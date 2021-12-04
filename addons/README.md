@@ -1,0 +1,2 @@
+- Chứa những modules của bên thứ 3
+- Có thể đặt tên folder bằng tên khác phù hợp với nhu cầu cá nhân
