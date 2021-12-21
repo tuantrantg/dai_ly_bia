@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_partner_rank_tree_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.rank.tree.view.inherit</field>
+        <field name="model">res.partner.rank</field>
+        <field name="inherit_id" ref="dai_ly_bia_module.res_partner_rank_tree_view" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="after">
+                <field name="code"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="res_partner_rank_form_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.rank.form.view.inherit</field>
+        <field name="model">res.partner.rank</field>
+        <field name="inherit_id" ref="dai_ly_bia_module.res_partner_rank_form_view" />
+        <field name="arch" type="xml">
+
+            <!-- <xpath expr="//group[1]" position="inside"> -->
+            <!-- <xpath expr="//group[@name='g_1']" position="inside"> -->
+            <!-- <xpath expr="//field[@name='description']/parent::group" position="inside"> -->
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+            </xpath>
+
+            <!-- <field name="description" position="after">
+                <field name="status"/>
+            </field> -->
+
+            <field name="name" position="after">
+                <field name="code"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="res_partner_rank_search_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.rank.search.view.inherit</field>
+        <field name="model">res.partner.rank</field>
+        <field name="inherit_id" ref="dai_ly_bia_module.res_partner_rank_search_view" />
+        <field name="arch" type="xml">
+
+            <field name="description" position="after">
+
+                <filter string="Active" name="filter_active" domain="[('status','=','active')]"/>
+
+                <separator/>
+
+                <filter string="Inactive" name="filter_inactive" domain="[('status','=','inactive')]"/>
+
+                <group expand="1" string="Group By">
+                    <filter string="Status" name='groupby_status' context="{'group_by':'status'}"/>
+                </group>
+
+            </field>
+
+        </field>
+    </record>
+
+    <record id="dai_ly_bia_module.act_res_partner_rank" model="ir.actions.act_window">
+        <field name="context">{
+            'search_default_groupby_status': 1,
+            'search_default_filter_active': 1,
+            'default_status': 'active',
+        }</field>
+    </record>
+
+</odoo>

@@ -29,7 +29,7 @@ class ResPartnerRankVendor(models.Model):
     def _check_minimum_amount(self):
         for rec in self:
             if rec.minimum_amount <= 0:
-                rec.minimum_amount = 100
+                raise UserError(_('blah blah blah'))
 
     @api.depends('name')
     def _compute_code(self):

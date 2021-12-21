@@ -29,6 +29,9 @@
         # ============================================================
         # 'views/',
         'views/res_partner_view.xml',
+        'views/res_partner_rank_view.xml',
+        'views/res_partner_rank_view_2.xml',  # Đây chỉ là vd, nên tách ra module riêng
+        'views/res_partner_rank_view_3.xml',  # Đây chỉ là vd, nên tách ra module riêng
 
         # ============================================================
         # REPORT

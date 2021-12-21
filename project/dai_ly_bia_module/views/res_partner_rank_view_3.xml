@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_partner_rank_form_view_inherit_primary_1" model="ir.ui.view">
+        <field name="name">res.partner.rank.form.view.inherit.primary.1</field>
+        <field name="model">res.partner.rank</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="dai_ly_bia_module.res_partner_rank_form_view" />
+        <field name="arch" type="xml">
+
+            <field name="status" position="before">
+                <button name="btn_primary_1" string="Test - Primary 1" type="object" class="oe_highlight"/>
+            </field>
+
+            <field name="code" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+
+            <field name="description" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="act_res_partner_rank_primary_1" model="ir.actions.act_window">
+        <field name="name">Partner Rank - Primary 1</field>
+        <field name="res_model">res.partner.rank</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('dai_ly_bia_module.res_partner_rank_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('dai_ly_bia_module.res_partner_rank_form_view_inherit_primary_1')})
+        ]"/>
+        <field name="context">{
+            'day_la_khach_hang': 1,
+            'search_default_filter_active': 1,
+        }</field>
+    </record>
+
+    <record id="menu_partner_rank_primary_1" model="ir.ui.menu">
+        <field name="name">Partner Rank - Primary 1</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+        <field name="action" ref="dai_ly_bia_module.act_res_partner_rank_primary_1"/>
+        <field name="sequence">120</field>
+    </record>
+
+</odoo>

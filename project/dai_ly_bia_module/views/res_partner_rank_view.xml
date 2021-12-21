@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_partner_rank_tree_view" model="ir.ui.view">
+        <field name="name">res.partner.rank.tree.view</field>
+        <field name="model">res.partner.rank</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_rank_form_view" model="ir.ui.view">
+        <field name="name">res.partner.rank.form.view</field>
+        <field name="model">res.partner.rank</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="g_1">
+                        <field name="name"/>
+                    </group>
+                    <group name="g_2">
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_partner_rank_search_view" model="ir.ui.view">
+        <field name="name">res.partner.rank.search.view</field>
+        <field name="model">res.partner.rank</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_res_partner_rank" model="ir.actions.act_window">
+        <field name="name">Partner Rank</field>
+        <field name="res_model">res.partner.rank</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="menu_partner_rank" model="ir.ui.menu">
+        <field name="name">Partner Rank</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+        <field name="action" ref="dai_ly_bia_module.act_res_partner_rank"/>
+        <field name="sequence">110</field>
+    </record>
+
+</odoo>
