@@ -10,6 +10,7 @@
 
             <field name="status" position="before">
                 <button name="btn_primary_1" string="Test - Primary 1" type="object" class="oe_highlight"/>
+                <button name="%(dai_ly_bia_module.act_first_wizard)d" string="Test - First Wizard" type="action"/>
             </field>
 
             <field name="code" position="attributes">
@@ -34,6 +35,7 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('dai_ly_bia_module.res_partner_rank_form_view_inherit_primary_1')})
         ]"/>
         <field name="context">{
+            'active_test': 0,
             'day_la_khach_hang': 1,
             'search_default_filter_active': 1,
         }</field>

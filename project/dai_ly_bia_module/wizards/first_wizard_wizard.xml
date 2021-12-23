@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="first_wizard_form_view" model="ir.ui.view">
+        <field name="name">first.wizard.form.view</field>
+        <field name="model">first.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="g_1">
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                </group>
+                <footer>
+                    <button string="Click Me!" name="btn_click_me" type="object" class="btn-primary" data-hotkey="x"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_first_wizard" model="ir.actions.act_window">
+        <field name="name">First Wizard</field>
+        <field name="res_model">first.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+        <field name="binding_model_id" ref="dai_ly_bia_module.model_res_partner_rank"/>
+    </record>
+
+    <record id="menu_first_wizard" model="ir.ui.menu">
+        <field name="name">First Wizard</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+        <field name="action" ref="dai_ly_bia_module.act_first_wizard"/>
+        <field name="sequence">150</field>
+    </record>
+
+</odoo>
