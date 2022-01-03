@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_first_xlsx" model="ir.actions.report">
+            <field name="name">First Xlsx Report</field>
+            <field name="model">first.xlsx.report.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">report_first_xlsx</field>
+            <field name="report_file">report_first_xlsx</field>
+            <field name="attachment_use">False</field>
+        </record>
+
+    </data>
+</odoo>

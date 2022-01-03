@@ -12,6 +12,7 @@
         'sale_management',
         'purchase',
         'stock',
+        'report_xlsx',
     ],
     'data': [
         # ============================================================
@@ -40,12 +41,14 @@
         # 'reports/',
         'reports/sale_report_templates.xml',
         'reports/sale_report.xml',
+        'reports/report_first_xlsx_report.xml',
 
         # ============================================================
         # WIZARD
         # ============================================================
         # 'wizard/',
         'wizards/first_wizard_wizard.xml',
+        'wizards/first_xlsx_report_wizard.xml',
 
         # ============================================================
         # MENU

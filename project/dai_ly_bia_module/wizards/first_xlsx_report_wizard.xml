@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="first_xlsx_report_wizard_form_view" model="ir.ui.view">
+        <field name="name">first.xlsx.report.wizard.form.view</field>
+        <field name="model">first.xlsx.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="g_1">
+                    <field name="from_datetime"/>
+                    <field name="to_datetime"/>
+                </group>
+                <footer>
+                    <button string="Print Report" name="btn_print_report" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_first_xlsx_report_wizard" model="ir.actions.act_window">
+        <field name="name">First Wizard</field>
+        <field name="res_model">first.xlsx.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+        <field name="binding_model_id" ref="dai_ly_bia_module.model_res_partner_rank"/>
+    </record>
+
+    <record id="menu_first_xlsx_report_wizard" model="ir.ui.menu">
+        <field name="name">First Xlsx Report Wizard</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+        <field name="action" ref="dai_ly_bia_module.act_first_xlsx_report_wizard"/>
+        <field name="sequence">160</field>
+    </record>
+
+</odoo>
