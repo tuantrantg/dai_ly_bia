@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_my_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+
+                    <!-- page -->
+                    <div class="page">
+
+                        <h2 class="mt16">
+                            <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                            <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                            <span t-field="doc.name"/>
+                        </h2>
+
+                        <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">
+                            <strong>Order Date:</strong>
+                            <p class="m-0" t-field="doc.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                        </div>
+
+                        <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">
+                            <strong>Quotation Date:</strong>
+                            <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                        </div>
+
+                        <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                            <p>
+                                <strong>Salesperson: </strong> <t t-esc="doc.user_id.name"/>
+                            </p>
+                        </div>
+
+                        <table class="table table-sm o_main_table">
+                            <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_description" class="text-left">Description</th>
+                                    <th name="th_quantity" class="text-right">Quantity</th>
+                                    <th name="th_priceunit" class="text-right">Unit Price</th>
+                                    <th name="th_taxes" class="text-right">Taxes</th>
+                                    <th name="th_subtotal" class="text-right">
+                                        <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                        <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+
+                                <t t-set="current_subtotal" t-value="0"/>
+
+                                <t t-foreach="doc.order_line" t-as="line">
+
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                                    <tr>
+                                        <td name="td_name"><span t-field="line.name"/></td>
+                                        <td name="td_quantity" class="text-right">
+                                            <span t-field="line.product_uom_qty"/>
+                                            <span t-field="line.product_uom"/>
+                                        </td>
+                                        <td name="td_priceunit" class="text-right">
+                                            <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td name="td_taxes" class="text-right">
+                                            <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                        </td>
+                                        <td name="td_subtotal" class="text-right o_price_total">
+                                            <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                            <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix" name="so_total_summary">
+                            <div id="total" class="row" name="total">
+                                <div class="col-4 ml-auto">
+                                    <table class="table table-sm">
+                                        <!-- Tax totals -->
+                                        <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                        <t t-call="account.document_tax_totals"/>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
+                            <div class="offset-8">
+                                <strong>Signature</strong>
+                            </div>
+                            <div class="offset-8">
+                                <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                            </div>
+                            <div class="offset-8 text-center">
+                                <p t-field="doc.signed_by"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

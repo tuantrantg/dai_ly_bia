@@ -25,4 +25,15 @@ class FirstWizard(models.TransientModel):
         print('@@@ self._context @@@', self._context)
         print('\n\n')
 
+        ctx_sale_order_id = self._context.get('active_id', False)
+
+        if ctx_sale_order_id:
+            sale_order = self.env['sale.order'].browse(ctx_sale_order_id)
+
+            res = self.env.ref(
+                'dai_ly_bia_module.action_report_saleorder_2'
+            ).report_action(sale_order)
+
+            return res
+
         return True

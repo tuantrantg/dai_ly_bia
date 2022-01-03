@@ -32,11 +32,14 @@
         'views/res_partner_rank_view.xml',
         'views/res_partner_rank_view_2.xml',  # Đây chỉ là vd, nên tách ra module riêng
         'views/res_partner_rank_view_3.xml',  # Đây chỉ là vd, nên tách ra module riêng
+        'views/sale_order_view.xml',
 
         # ============================================================
         # REPORT
         # ============================================================
         # 'reports/',
+        'reports/sale_report_templates.xml',
+        'reports/sale_report.xml',
 
         # ============================================================
         # WIZARD

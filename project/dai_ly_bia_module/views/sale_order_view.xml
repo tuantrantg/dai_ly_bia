@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <data>
+
+                <xpath expr="//button[@name='action_draft']" position="after">
+                    <button name="%(dai_ly_bia_module.act_first_wizard)d" string="Test - First Wizard" type="action"/>
+                </xpath>
+
+            </data>
+        </field>
+    </record>
+
+</odoo>
